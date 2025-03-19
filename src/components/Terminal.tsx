@@ -13,7 +13,7 @@ const Terminal: React.FC = () => {
       <div className="mb-8 glow">
         <Typewriter
           options={{
-            strings: ['Welcome to my portfolio terminal', 'Type "help" to see available commands'],
+            strings: ['Welcome to Rajath\'s Portfolio', 'Type "help" to see available commands'],
             autoStart: true,
             loop: false,
             delay: 50,
