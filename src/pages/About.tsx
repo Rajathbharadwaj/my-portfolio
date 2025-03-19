@@ -25,8 +25,9 @@ const About: React.FC = () => {
           <Card>
             <p>
               I'm a Machine Learning Engineer and AI Researcher with a passion for developing
-              innovative solutions using cutting-edge AI technologies. Currently pursuing my
-              Master's in Computer Science with AI Specialization at the University of Windsor.
+              innovative solutions using cutting-edge AI technologies. Currently working as a Head of Engineering 
+              and Senior AI Engineer at OpenSesame, focusing on production-grade LLM orchestration systems and 
+              AI-powered workflow automation.
             </p>
           </Card>
         </Section>
@@ -64,9 +65,9 @@ const About: React.FC = () => {
         <Section title="Current Focus">
           <Card>
             <p>
-              Currently working on advancing emotional expressiveness in talking head generation
-              using diffusion models, while also contributing to various AI research projects
-              at the University of Windsor.
+              Leading engineering efforts at OpenSesame, architecting production-grade LLM orchestration systems
+              using LangChain and LangGraph. Working on graph-based vector stores for improved contextual 
+              accuracy and developing real-time insights platforms for instant contextual insights from disparate sources.
             </p>
           </Card>
         </Section>
@@ -76,11 +77,11 @@ const About: React.FC = () => {
             <div className="space-y-4">
               <div>
                 <h3 className="font-bold mb-2">Core Technologies:</h3>
-                <p>Python, TensorFlow, PyTorch, CUDA, Docker, Kubernetes</p>
+                <p>Python, LangChain, LangGraph, PyTorch/Lightning, TensorRT, CUDA, Docker, Kubernetes</p>
               </div>
               <div>
                 <h3 className="font-bold mb-2">Specialized Areas:</h3>
-                <p>LLMs, RAG, Computer Vision, MLOps, Edge AI Deployment</p>
+                <p>LLMs, RAG, Graph Vector Stores, Computer Vision, MLOps, Edge AI Deployment</p>
               </div>
             </div>
           </Card>
