@@ -3,11 +3,74 @@
 @tailwind utilities;
 
 :root {
-  --neon-green: #39ff14;
-  --neon-blue: #0ff;
-  --neon-purple: #b400ff;
+  --neon-green: #39FF14;
+  --neon-blue: #00FFFF;
   --dark-bg: #0a0a0f;
   --grid-size: 50px;
+  --contribution-color-0: #161b22;
+  --contribution-color-1: rgba(57, 211, 83, 0.3);
+  --contribution-color-2: rgba(57, 211, 83, 0.5);
+  --contribution-color-3: rgba(57, 211, 83, 0.8);
+  --contribution-color-4: rgba(57, 211, 83, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green); }
+  50% { text-shadow: 0 0 20px var(--neon-green), 0 0 30px var(--neon-green); }
+  100% { text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green); }
+}
+
+.glow {
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow-blue {
+  0% { text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue); }
+  50% { text-shadow: 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue); }
+  100% { text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue); }
+}
+
+.glow-blue {
+  animation: glow-blue 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100vh); }
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(57, 255, 20, 0.2);
+  z-index: 999;
+  animation: scanline 2s linear infinite;
+  pointer-events: none;
+}
+
+/* Typing effect for terminal text */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+.typing-effect {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(40, end);
 }
 
 body {
@@ -15,18 +78,6 @@ body {
   background-color: var(--dark-bg);
   color: var(--neon-green);
   font-family: 'JetBrains Mono', monospace;
-}
-
-/* Glowing text effect */
-.glow {
-  text-shadow: 0 0 2px var(--neon-green),
-               0 0 4px var(--neon-green);
-}
-
-.glow-blue {
-  color: var(--neon-blue);
-  text-shadow: 0 0 2px var(--neon-blue),
-               0 0 4px rgba(0, 255, 255, 0.5);
 }
 
 /* Cyber grid background */
@@ -54,4 +105,226 @@ body {
   }
 }
 
-/* Rest of your existing CSS */
+/* Interactive GitHub Calendar Styles */
+.github-calendar-wrapper {
+  color: #8b949e;
+}
+
+.interactive-calendar {
+  overflow: visible;
+}
+
+.interactive-calendar svg {
+  overflow: visible;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Style month and day labels */
+.interactive-calendar text {
+  fill: #8b949e !important;
+  font-size: 9px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* Style contribution days */
+.interactive-calendar .ContributionCalendar-day {
+  rx: 2px;
+  ry: 2px;
+  stroke: rgba(27, 31, 35, 0.3);
+  stroke-width: 1px;
+  transition: all 0.2s ease;
+}
+
+/* Contribution day hover effects */
+.interactive-calendar .ContributionCalendar-day:hover {
+  stroke: #39d353;
+  stroke-width: 1.5px;
+  filter: drop-shadow(0 0 4px rgba(57, 211, 83, 0.6));
+  transform: scale(1.15);
+  z-index: 10;
+}
+
+/* Contribution colors */
+.interactive-calendar .ContributionCalendar-day[data-level="0"] {
+  fill: var(--contribution-color-0) !important;
+}
+
+.interactive-calendar .ContributionCalendar-day[data-level="1"] {
+  fill: var(--contribution-color-1) !important;
+}
+
+.interactive-calendar .ContributionCalendar-day[data-level="2"] {
+  fill: var(--contribution-color-2) !important;
+}
+
+.interactive-calendar .ContributionCalendar-day[data-level="3"] {
+  fill: var(--contribution-color-3) !important;
+}
+
+.interactive-calendar .ContributionCalendar-day[data-level="4"] {
+  fill: var(--contribution-color-4) !important;
+}
+
+/* Hide default GitHub headers and footers */
+.interactive-calendar .float-left text.month,
+.interactive-calendar .float-left > .f6.color-fg-muted {
+  display: none;
+}
+
+/* Style grid container */
+.interactive-calendar .js-calendar-graph-svg {
+  padding: 8px;
+}
+
+/* Style tooltip */
+.svg-tip {
+  background: #0d1117 !important;
+  border: 1px solid #39d353 !important;
+  color: #f0f6fc !important;
+  border-radius: 3px !important;
+  font-size: 11px !important;
+  padding: 5px !important;
+  box-shadow: 0 0 10px rgba(57, 211, 83, 0.3) !important;
+  z-index: 100 !important;
+}
+
+.svg-tip::after {
+  display: none !important;
+}
+
+/* Style the tooltip */
+.svg-tip {
+  background: #1b1f23;
+  border: 1px solid #30363d;
+  color: #f0f6fc;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.svg-tip::after {
+  border-top-color: #30363d;
+}
+
+.ContributionCalendar-day[data-level="0"] {
+  fill: #161b22 !important;
+  background-color: #161b22 !important;
+}
+
+.ContributionCalendar-day[data-level="1"] {
+  fill: var(--color-calendar-graph-day-L1-bg) !important;
+  background-color: var(--color-calendar-graph-day-L1-bg) !important;
+}
+
+.ContributionCalendar-day[data-level="2"] {
+  fill: var(--color-calendar-graph-day-L2-bg) !important;
+  background-color: var(--color-calendar-graph-day-L2-bg) !important;
+}
+
+.ContributionCalendar-day[data-level="3"] {
+  fill: var(--color-calendar-graph-day-L3-bg) !important;
+  background-color: var(--color-calendar-graph-day-L3-bg) !important;
+}
+
+.ContributionCalendar-day[data-level="4"] {
+  fill: var(--color-calendar-graph-day-L4-bg) !important;
+  background-color: var(--color-calendar-graph-day-L4-bg) !important;
+}
+
+/* GitHub Calendar Styling */
+.github-calendar-wrapper {
+  color: #8b949e;
+  margin-bottom: 1rem;
+}
+
+.github-calendar-wrapper .float-left {
+  width: 100%;
+}
+
+.github-calendar-wrapper .calendar-graph text.wday,
+.github-calendar-wrapper .calendar-graph text.month {
+  fill: #8b949e !important;
+  font-size: 12px !important;
+}
+
+.github-calendar-wrapper .contrib-column {
+  padding: 12px 0;
+  text-align: center;
+  border-left: 1px solid #21262d;
+  font-size: 12px;
+}
+
+.github-calendar-wrapper .contrib-column-first {
+  border-left: 0;
+}
+
+.github-calendar-wrapper .contrib-footer {
+  font-size: 11px;
+  padding: 0 10px 12px;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  height: 26px;
+}
+
+.github-calendar-wrapper .contrib-legend {
+  text-align: right;
+  padding: 0 10px 10px;
+  display: inline-block;
+  float: right;
+}
+
+.github-calendar-wrapper .contrib-legend .legend {
+  display: inline-block;
+  list-style: none;
+  margin: 0 5px;
+  position: relative;
+  bottom: -1px;
+  padding: 0;
+}
+
+.github-calendar-wrapper .contrib-legend .legend li {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  margin: 0 5px;
+}
+
+.github-calendar-wrapper .text-muted {
+  color: #8b949e;
+}
+
+.github-calendar-wrapper h2.f4.text-normal.mb-3,
+.github-calendar-wrapper .f6.color-fg-muted.mt-2.d-block {
+  display: none; /* Hide the default title */
+}
+
+/* Custom tooltips for contribution calendar */
+.custom-github-tooltip {
+  position: absolute;
+  background: #161b22;
+  border: 1px solid #30363d;
+  color: #f0f6fc;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 10px;
+  pointer-events: none;
+  z-index: 100;
+  transform: translate(-50%, -100%);
+  margin-top: -5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  white-space: nowrap;
+}
+
+.custom-github-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #30363d transparent transparent transparent;
+}
